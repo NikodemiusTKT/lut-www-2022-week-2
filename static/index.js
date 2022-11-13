@@ -1,28 +1,38 @@
-//Get the form element by id
-var form = document.getElementById("form");
 
-//Define the event handler for the form when it's submitted
-form.addEventListener("submit", async (e) => {
-  //Prevent browser default behavior
-  e.preventDefault();
+if (document.readyState !== "loading") {
+  initializeCode();
+} else {
+  document.addEventListener("DOMContentLoaded", function () {
+    initializeCode();
+  });
+}
 
-  //Get the entire form fields
-  let form = e.currentTarget;
+function initializeCode() {
+  //Get the form element by id
+  var form = document.getElementById("form");
+  //Define the event handler for the form when it's submitted
+  form.addEventListener("submit", async (e) => {
+    //Prevent browser default behavior
+    e.preventDefault();
 
-  //Get URL for api endpoint
-  let url = form.action;
+    //Get the entire form fields
+    let form = e.currentTarget;
 
-  try {
-    //Form field instance
-    let formFields = new FormData(form);
+    //Get URL for api endpoint
+    let url = form.action;
 
-    //Call the `postFormFieldsJson()` function
-    let responseData = await postFormFieldsAsJson({ url, formFields });
-  } catch (error) {
-    // Handle the error here.
-    console.error(`An has occured ${error}`);
-  }
-})
+    try {
+      //Form field instance
+      let formFields = new FormData(form);
+
+      //Call the `postFormFieldsJson()` function
+      let responseData = await postFormFieldsAsJson({ url, formFields });
+    } catch (error) {
+      // Handle the error here.
+      console.error(`An has occured ${error}`);
+    }
+  })
+}
 /**
  * Helper function to POST data as JSON with Fetch.
  */
