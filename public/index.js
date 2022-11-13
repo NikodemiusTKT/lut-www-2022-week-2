@@ -1,5 +1,5 @@
 //Get the form element by id
-const form = document.getElementById("form");
+var form = document.getElementById("form");
 
 //Define the event handler for the form when it's submitted
 form.addEventListener("submit", async (e) => {
