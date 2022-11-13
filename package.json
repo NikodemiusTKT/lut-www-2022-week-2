@@ -4,9 +4,8 @@
   "description": "The 2nd weekly exercise of LUT University's Advanced Web Applications course.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "keywords": [
     "lut",

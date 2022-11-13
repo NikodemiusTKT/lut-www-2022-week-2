@@ -11,6 +11,9 @@ app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-
 const path = require('path')
 app.use('/static', express.static(path.join(__dirname, 'public')))
 
+// list -array to save the numbers for the "list" POST path
+let list = [];
+
 
 // simple hello world get route
 app.get('/hello', (req, res) => {
@@ -26,12 +29,25 @@ app.get('/echo/:id', (req, res) => {
 app.post('/sum', (req, res) => {
   // get the numbers array from the request body
   const numbersArray = req.body.numbers
-  // use array reduce function to sum up the numbers
+  // use array reduce function to sum up the numbers in the numbersArray
   const numbersSum = numbersArray.reduce(
   (previousValue, currentValue) => previousValue + currentValue
 );
   // return the sum as json object response
   res.json({sum: numbersSum})
+})
+
+// POST route for adding text items to list
+app.post('/list', (req,res) => {
+  // get the number from the request body
+  const number = req.body.text;
+  // add the new number to the list
+  list.push(number)
+  // return the list array as json object
+  res.json({
+    list
+  })
+
 })
 
 
