@@ -8,6 +8,9 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
+const path = require('path')
+app.use('/static', express.static(path.join(__dirname, 'public')))
+
 
 // simple hello world get route
 app.get('/hello', (req, res) => {
