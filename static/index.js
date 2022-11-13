@@ -1,17 +1,18 @@
 
 if (document.readyState !== "loading") {
-  initializeCode();
+  await initializeCode();
 } else {
-  document.addEventListener("DOMContentLoaded", function () {
-    initializeCode();
+  document.addEventListener("DOMContentLoaded", async function () {
+    await initializeCode();
   });
 }
 
-function initializeCode() {
+async function initializeCode() {
   //Get the form element by id
-  var form = document.getElementById("form");
+  var formElement = document.forms.inputForm;
+
   //Define the event handler for the form when it's submitted
-  form.addEventListener("submit", async (e) => {
+  formElement.addEventListener("submit", async (e) => {
     //Prevent browser default behavior
     e.preventDefault();
 
