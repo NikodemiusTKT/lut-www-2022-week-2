@@ -1,0 +1,32 @@
+{
+  "name": "week2",
+  "version": "1.0.0",
+  "description": "The 2nd weekly exercise of LUT University's Advanced Web Applications course.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "lut",
+    "exercise",
+    "assignment",
+    "course",
+    "assignment",
+    "university",
+    "express",
+    "advanced",
+    "web",
+    "applications"
+  ],
+  "author": "Teemu Tanninen",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
