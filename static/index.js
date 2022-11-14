@@ -1,39 +1,47 @@
 
 if (document.readyState !== "loading") {
-  await initializeCode();
+  initializeCode()
+
 } else {
-  document.addEventListener("DOMContentLoaded", async function () {
-    await initializeCode();
-  });
+  initializeCode()
 }
-
 async function initializeCode() {
-  //Get the form element by id
-  var formElement = document.forms.inputForm;
+  document.addEventListener('DOMContentLoaded', function () {
+    //Get the form element by id
+    const formElement = document.getElementById('form');
 
-  //Define the event handler for the form when it's submitted
-  formElement.addEventListener("submit", async (e) => {
-    //Prevent browser default behavior
-    e.preventDefault();
+    //Define the event handler for the form when it's submitted
+    //FIXED FormData not populating using async () => function syntax
 
-    //Get the entire form fields
-    let form = e.currentTarget;
-
-    //Get URL for api endpoint
-    let url = form.action;
-
-    try {
-      //Form field instance
-      let formFields = new FormData(form);
-
-      //Call the `postFormFieldsJson()` function
-      let responseData = await postFormFieldsAsJson({ url, formFields });
-    } catch (error) {
-      // Handle the error here.
-      console.error(`An has occured ${error}`);
-    }
+    formElement.addEventListener("submit", async () => handleFormSubmit)
   })
 }
+
+async function handleFormSubmit(event) {
+  //Prevent browser default behavior
+  event.preventDefault();
+
+  //Get the entire form fields
+  let form = event.currentTarget;
+
+  //Get URL for api endpoint
+  let url = form.action;
+  //Form field instance
+
+  try {
+    let formData = new FormData(form);
+    //Call the `postFormFieldsJson()` function
+    let responseData = await postFormFieldsAsJson({ url, formData });
+    return responseData;
+  } catch (error) {
+    // Handle the error here.
+    console.error(`An has occured ${error}`);
+  }
+}
+
+
+
+// async function initializeCode() { }
 /**
  * Helper function to POST data as JSON with Fetch.
  */
@@ -42,7 +50,6 @@ async function postFormFieldsAsJson({ url, formData }) {
   let formDataObject = Object.fromEntries(formData.entries());
   // Format the plain form data as JSON
   let formDataJsonString = JSON.stringify(formDataObject);
-  console.log(formDataObject)
 
   //Set the fetch options (headers, body)
   let fetchOptions = {
